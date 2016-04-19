@@ -1,0 +1,24 @@
+{
+  "name": "cookies.js",
+  "main": "cookies.js",
+  "version": "1.0.0",
+  "homepage": "https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie",
+  "authors": [
+    "Mozilla"
+  ],
+  "description": "A complete cookies reader/writer framework with full unicode support.",
+  "keywords": [
+    "cookies",
+    "mozilla",
+    "cookies.js",
+    "framework"
+  ],
+  "license": "GNU Public License V3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

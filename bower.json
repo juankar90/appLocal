@@ -1,0 +1,16 @@
+{
+  "name": "miapp",
+  "description": "local",
+  "main": "app.js",
+  "authors": [
+    "Juan Carlos Páramo"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/juankar90/appLocal",
+  "dependencies": {
+    "angular": "^1.5.3",
+    "bootstrap": "^3.3.6",
+    "angular-route": "^1.5.3",
+    "satellizer": "^0.14.0"
+  }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="miApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi App</title>
+  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css" class="css">
+  <link rel="stylesheet" href="./css/style.css" class="css">
+  <link rel="stylesheet" href="./bower_components/jquery-ui/themes/smoothness/jquery-ui.css" class="css">
+
+  <!-- EXTENSIONES -->
+  <script src="./bower_components/angular/angular.js"></script>
+  <script src="./bower_components/angular-route/angular-route.min.js"></script>
+  <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="./bower_components/jquery-ui/jquery-ui.js"></script>
+  <script src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src="./bower_components/satellizer/satellizer.min.js"></script>
+  <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="./bower_components/angular-cookies/angular-cookies.min.js"></script>
+
+
+
+  <!-- APP -->
+  <script src="./app.js"></script>
+  <script src="./js/controllers/routes.js"></script>
+
+
+  <!-- CONTROLLERS -->
+  <script src="./js/controllers/login.js"></script>
+  <script src="./js/controllers/home.js"></script>
+  <script src="./js/controllers/introducir-pago.js"></script>
+
+  <!-- SERVICES -->
+  <script src="./js/services/serv-listado.js"></script>
+  <script src="./js/services/serv-anadir-pago.js"></script>
+  <script src="./js/services/serv-ajax-login.js"></script>
+  <script src="./js/services/serv-login.js"></script>
+
+
+
+</head>
+<body ng-controller="miAppControl">
+  <div class="principal col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+
+      <div ng-show="nombre!=null">
+        <span ng-bind-html="nombre"></span>
+          <a href="#/" ng-click="cerrarSesion()">cerrar sesion</a>
+      </div>
+
+
+      <h4 ng-bind-html="menu"> <span ng-bind-html="sesion"></span></h4>
+      <div ng-view></div>
+  </div>
+
+
+
+
+</body>
+</html>

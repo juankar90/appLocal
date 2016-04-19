@@ -1,0 +1,68 @@
+.principal {
+    margin-top: 50px;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 40px 15px;
+}
+
+#seleccionar-mes{
+  display: none;
+  //margin: 10px 0 0 20px;
+}
+
+#seleccionar-mes input, label{
+  display: block;
+  margin: 10px 0 0 20px;
+}
+
+#fecha-fin {
+  margin-bottom: 100px;
+}
+
+#otro-mes {
+  display: block;
+}
+
+
+.subtitulo{
+  font-size: 1.5em;
+}
+
+
+#tabla-listado {
+  margin-top: 20px;
+}
+
+.nopagado {
+  background-color: rgb(235, 52, 52);
+  color: white;
+}
+.form-pagos {
+    padding-left: 0;
+}
+.form-pagos + .form-pagos {
+    padding-right: 0;
+}
+
+.form-pagos span {
+  width: 6em;
+}
+.form-pagos .input-group{
+  margin-top: 20px;
+}
+
+.form-pagos .input-group + button {
+  margin-top: 20px;
+    float: right;
+}
+
+.enviar {
+  position: relative;
+  bottom: 200px;
+
+}
+
+
+/*.menuPagos {
+  display: none;
+}*/

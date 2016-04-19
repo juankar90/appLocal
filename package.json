@@ -1,0 +1,21 @@
+{
+  "name": "miapp",
+  "version": "1.0.0",
+  "description": "local",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juankar90/appLocal.git"
+  },
+  "author": "Juan Carlos Páramo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juankar90/appLocal/issues"
+  },
+  "homepage": "https://github.com/juankar90/appLocal"
+}

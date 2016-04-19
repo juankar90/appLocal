@@ -1,0 +1,48 @@
+
+<div ng-bind-html="msjPagoCorrecto" ng-show="msjPagoCorrecto != null"></div>
+<div class="menuPagos" ng-style="menuPagos">
+    <h3>¿Qué quieres hacer ahora?</h3>
+    <button type="button" class="btn btn-primary" ng-click="visualizarForm()">Añadir otro pago</button>
+    <a href="/#"><button type="button" class="btn btn-primary">Visualizar pagos</button></a>
+
+</div>
+
+</div>
+
+<form action="" ng-style="styleFormPagos">
+
+  <div class="form-pagos col-xs-12 col-sm-6">
+
+      <div class="input-group izq col-sm-12">
+          <span class="input-group-addon">Persona</span>
+          <select class="form-control" ng-model="pagosPersona" ng-options="o as o for o in personas"></select>
+      </div>
+
+      <div class="input-group der col-sm-12">
+          <span class="input-group-addon">Fecha</span>
+          <input id="pagosFecha" class="form-control" ng-model="pagosFecha">
+      </div>
+
+  </div>
+
+  <div class="form-pagos col-xs-12 col-sm-6">
+
+      <div class="input-group der col-sm-12">
+          <span class="input-group-addon">Importe</span>
+          <input id="pagosFecha" class="form-control" type="number" ng-model="pagosImporte">
+      </div>
+
+
+      <div class="input-group der col-sm-12">
+          <span class="input-group-addon">Concepto</span>
+          <select class="form-control" ng-model="pagosConcepto" ng-options="o as o for o in tiposConcepto">Concepto</select>
+      </div>
+      <button type="button" class="btn btn-primary" ng-click="funcionAjaxPago()">Guardar</button>
+
+  </div>
+
+
+
+
+
+</form>

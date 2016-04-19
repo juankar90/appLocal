@@ -1,0 +1,36 @@
+<div >
+  
+    <h3>Datos de: {{fecha}} - {{fechaFinn}}</h3>
+    <button id="otro-mes" ng-click="desplegaDatePicker()">Ver otras fechas</button>
+    <div class="form-group" id="seleccionar-mes">
+      <form action="">
+        <label for="">Fecha inicio</label>
+        <input type="text" id="fecha-inicio" ng-model="fechaInicio">
+
+        <label for="">Fecha fin</label>
+        <input type="text" id="fecha-fin" ng-model="fechaFin" >
+        <input type="button" value="Aceptar" ng-click="fechas()"></input>
+      </form>
+    </div>
+  </div>
+
+
+    </div>
+    <div id="datepicker">
+
+    </div>
+    <table id="tabla-listado" class="table table-bordered table-condensed">
+        <tr >
+            <th ng-repeat="t in titulosListado">{{t}}</th>
+
+        </tr>
+
+        <tr ng-repeat="l in lista" ng-class="{nopagado: l.pagado == 'no'}">
+            <td >{{l.nombre}}</td>
+            <td>{{l.pagado}}</td>
+            <td>{{l.importe}} €</td>
+            <td>{{l.fecha}}</td>
+            <td>{{l.chocopuntos}}</td>
+        </tr>
+    </table>
+  <h2>{{nodatos}}</h2>
