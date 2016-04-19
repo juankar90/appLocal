@@ -35,41 +35,71 @@ ls.factory('listadoFactory',function($http, $q, $filter){
                 });
                 return promise;
 
-            },
+        },
 
 
         getMes: function (inicio, fin) {
 
-                      var defered = $q.defer();
-                      var promise = defered.promise;
+            var defered = $q.defer();
+            var promise = defered.promise;
 
-                      var req = {
-                          method: 'GET',
-                          url: './php/listado-ajax.php',
-                          responseType: 'json',
-                          params: {
-                                fechaInicio: inicio,
-                                fechaFin: fin,
+            var req = {
+                method: 'GET',
+                url: './php/listado-ajax.php',
+                responseType: 'json',
+                params: {
+                fechaInicio: inicio,
+                fechaFin: fin
+                }
+            };
 
-                          }
-                      };
+            $http(req).then(function (response) {
+                //console.log(response);
+                if (response.data.status == 0) {
 
-                      $http(req).then(function (response) {
-                          //console.log(response);
-                          if (response.data.status == 0) {
+                    defered.resolve(response);
 
-                              defered.resolve(response);
+                } else {
+                    defered.reject(response.data);
+                }
+            }, function (response) {
+                  //console.log(response);
+                    defered.reject(response);
+              });
+            return promise;
 
-                          } else {
-                              defered.reject(response.data);
-                          }
-                      }, function (response) {
-                          //console.log(response);
-                          defered.reject(response);
-                      });
-                      return promise;
+          },
 
-                  },
+          getNombre: function (nombre) {
+
+              var defered = $q.defer();
+              var promise = defered.promise;
+
+              var req = {
+                  method: 'GET',
+                  url: './php/listado-ajax.php',
+                  responseType: 'json',
+                  params: {
+                        filtroNombre: nombre
+                  }
+              };
+
+              $http(req).then(function (response) {
+                    //console.log(response);
+                    if (response.data.status == 0) {
+                        defered.resolve(response);
+
+                    } else {
+                        defered.reject(response.data);
+                    }
+              }, function (response) {
+                    //console.log(response);
+                    defered.reject(response);
+              });
+              return promise;
+
+        },
+
         comprobarMes: function (){
             var fecha = $filter('date')(new Date(), 'MM');
             var mes;

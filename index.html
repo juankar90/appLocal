@@ -46,8 +46,10 @@
           <a href="#/" ng-click="cerrarSesion()">cerrar sesion</a>
       </div>
 
+      <div ng-show="nombre!=null">
+        <h4 ng-bind-html="menu"> <span ng-bind-html="sesion"></span></h4>
+      </div>
 
-      <h4 ng-bind-html="menu"> <span ng-bind-html="sesion"></span></h4>
       <div ng-view></div>
   </div>
 

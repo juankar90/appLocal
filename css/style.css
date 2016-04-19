@@ -1,28 +1,17 @@
+body {
+  background-color: rgb(201, 201, 201);
+}
 .principal {
     margin-top: 50px;
-    border: 2px solid;
-    border-radius: 5px;
+    /*border: 2px solid;*/
+    border-radius: 15px;
     padding: 40px 15px;
+    background-color: rgb(201, 201, 201);
 }
 
-#seleccionar-mes{
-  display: none;
-  //margin: 10px 0 0 20px;
+th {
+  background-color: rgb(69, 213, 16);
 }
-
-#seleccionar-mes input, label{
-  display: block;
-  margin: 10px 0 0 20px;
-}
-
-#fecha-fin {
-  margin-bottom: 100px;
-}
-
-#otro-mes {
-  display: block;
-}
-
 
 .subtitulo{
   font-size: 1.5em;
@@ -62,7 +51,71 @@
 
 }
 
+/**********************
+++++FORMULARIO LOGIN+++
+**********************/
+.loginUserForm{
+  padding: 1em;
+}
+#loginUserForm .input-group{
+  margin-top: 1em;
+  width: 100%;
 
-/*.menuPagos {
-  display: none;
-}*/
+}
+
+#loginUserForm .input-group + .input-group   {
+  margin: 2em 0;
+  width: 100%;
+}
+
+#loginUserForm button {
+  width: 100%;
+  margin: 1em 0;
+}
+#loginUserForm img {
+  width: 80%;
+  margin: 0 10%;
+}
+
+
+/****************
+FORMULARIOS HOME
+***************/
+.buscarPorNombre .form-control, .buscarPorNombre button {
+  width: 50%;
+  margin: 20px 0 5px 20px;
+}
+#seleccionar-mes .form-control {
+  width: 50%;
+}
+#seleccionar-mes{
+  /*display: none; AKII*/
+
+}
+
+#seleccionar-mes input, label{
+  /*display: none;*/
+  margin: 10px 0 0 20px;
+}
+
+#seleccionar-mes .buscar {
+  margin: 25px 0 0 20px;
+  width: 50%;
+}
+
+#fecha-fin {
+  margin-bottom: 100px;
+}
+
+#otro-mes {
+  display: inline;
+}
+
+
+
+/***********
+COMUN FORMULARIOS
+*********/
+.miboton {
+  padding: 5px;
+}

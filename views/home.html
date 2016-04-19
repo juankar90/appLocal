@@ -1,17 +1,29 @@
-<div >
-  
-    <h3>Datos de: {{fecha}} - {{fechaFinn}}</h3>
-    <button id="otro-mes" ng-click="desplegaDatePicker()">Ver otras fechas</button>
-    <div class="form-group" id="seleccionar-mes">
-      <form action="">
-        <label for="">Fecha inicio</label>
-        <input type="text" id="fecha-inicio" ng-model="fechaInicio">
+  <div >
 
-        <label for="">Fecha fin</label>
-        <input type="text" id="fecha-fin" ng-model="fechaFin" >
-        <input type="button" value="Aceptar" ng-click="fechas()"></input>
-      </form>
-    </div>
+      <span class="subtitulo">Datos de: {{fecha}} </span> <span class="subtitulo" ng-show="fechaFinn != null || fechaFinn != 'undefined'">{{fechaFinn}}</span><br>
+      <button id="otro-mes" class="miboton" ng-click="desplegaDatePicker()">Ver otras fechas</button>
+      <button class="miboton" ng-click="mostrarBuscarNombre()">Buscar nombre</button>
+      <button class="miboton" ng-click="listadoNormal()">Borrar filtros</button>
+
+      <div class="form-group" id="seleccionar-mes" ng-style="styleDatePicker">
+          <form action="">
+              <label for="">Fecha inicio</label>
+              <input type="text" class="form-control" id="fecha-inicio" ng-model="fechaInicio">
+
+              <label for="">Fecha fin</label>
+              <input type="text" class="form-control" id="fecha-fin" ng-model="fechaFin" >
+              <button type="button" class="miboton buscar" ng-click="fechas()">Buscar</button>
+          </form>
+      </div>
+
+
+      <div ng-style="styleBuscarNombre">
+          <div class="form-group buscarPorNombre">
+              <label for=""></label>
+              <select class="form-control" ng-model="nombreBusq" ng-options="o as o for o in personas"></select>
+              <button type="button" class="miboton buscar" ng-click="buscarPorNombre()">Buscar</button>
+          </div>
+      </div>
   </div>
 
 
@@ -19,7 +31,7 @@
     <div id="datepicker">
 
     </div>
-    <table id="tabla-listado" class="table table-bordered table-condensed">
+    <table id="tabla-listado" class="table table-bordered table-condensed" ng-show="visualizarTabla != null;">
         <tr >
             <th ng-repeat="t in titulosListado">{{t}}</th>
 
@@ -30,7 +42,7 @@
             <td>{{l.pagado}}</td>
             <td>{{l.importe}} €</td>
             <td>{{l.fecha}}</td>
-            <td>{{l.chocopuntos}}</td>
+            <td ng-show="l.chocopuntos!=null || l.chocopuntos!='undefined'">{{l.chocopuntos}}</td>
         </tr>
     </table>
-  <h2>{{nodatos}}</h2>
+  <h2 ng-show="nodatos!=null">{{nodatos}}</h2>
