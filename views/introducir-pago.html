@@ -23,6 +23,15 @@
           <input id="pagosFecha" class="form-control" ng-model="pagosFecha">
       </div>
 
+      <div class="input-group" ng-show="pagosConcepto == 'multa'">
+          <span class="input-group-addon">Motivo</span>
+          <select class="form-control" ng-model="concepto" ng-options="o as o for o in tiposConcepto2"></select>
+      </div>
+      <div class="input-group" ng-show="concepto == 'otro'">
+          <span class="input-group-addon">Expecifica</span>
+          <textarea ng-model="masInfo" maxlength="250" rows="4" cols="40"></textarea>
+      </div>
+
   </div>
 
   <div class="form-pagos col-xs-12 col-sm-6">
@@ -37,6 +46,11 @@
           <span class="input-group-addon">Concepto</span>
           <select class="form-control" ng-model="pagosConcepto" ng-options="o as o for o in tiposConcepto">Concepto</select>
       </div>
+
+
+
+
+
       <button type="button" class="btn btn-primary" ng-click="funcionAjaxPago()">Guardar</button>
 
   </div>

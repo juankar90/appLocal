@@ -1,0 +1,60 @@
+
+<div ng-bind-html="msjPagoCorrecto" ng-show="msjPagoCorrecto != null"></div>
+    <div class="menuPagos" ng-style="menuPagos">
+        <h3>¿Qué quieres hacer ahora?</h3>
+        <button type="button" class="btn btn-primary">Añadir otra multa</button>
+        <a href="/#"><button type="button" class="btn btn-primary">Visualizar pagos</button></a>
+    </div>
+
+</div>
+
+<form action="" ng-style="styleFormPagos">
+
+  <div class="form-pagos col-xs-12 col-sm-6">
+
+      <div class="input-group izq col-sm-12">
+          <span class="input-group-addon">Persona</span>
+          <select class="form-control" ng-model="multaPersona" ng-options="o as o for o in personas"></select>
+      </div>
+
+      <div class="input-group der col-sm-12">
+          <span class="input-group-addon">Fecha</span>
+          <input id="multaFecha" class="form-control" ng-model="multaFecha">
+      </div>
+      <div class="input-group der col-sm-12">
+          <span class="input-group-addon">Cantidad</span>
+          <input id="pagosFecha" class="form-control" type="number" ng-model="multaImporte" required>
+      </div>
+
+
+  </div>
+
+  <div class="form-pagos col-xs-12 col-sm-6">
+
+
+      <div class="input-group col-sm-12">
+          <span class="input-group-addon">Motivo</span>
+            <select class="form-control" ng-model="multaConcepto" ng-options="o as o for o in posiblesConceptos"></select>
+      </div>
+
+      <div class="input-group col-sm-12">
+          <span class="input-group-addon">Expecifica</span>
+          <textarea class="form-control" ng-model="multaMasInfo" maxlength="250" rows="3" ></textarea>
+      </div>
+
+
+
+
+
+
+
+
+      <button type="button" class="btn btn-primary" ng-click="introducirMulta()">Guardar</button>
+
+  </div>
+
+
+
+
+
+</form>

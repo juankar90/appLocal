@@ -5,21 +5,28 @@
       <button class="miboton" ng-click="mostrarBuscarNombre()">Buscar nombre</button>
       <button class="miboton" ng-click="listadoNormal()">Borrar filtros</button>
 
+
       <div class="form-group" id="seleccionar-mes" ng-style="styleDatePicker">
           <form action="">
-              <label for="">Fecha inicio</label>
-              <input type="text" class="form-control" id="fecha-inicio" ng-model="fechaInicio">
+              <h4>Selecciona las fechas que deseas filtrar:</h4>
+              <div class="input-group">
+                  <span class="input-group-addon">Fecha inicio</span>
+                  <input type="text" class="form-control" id="fecha-inicio" ng-model="fechaInicio">
+              </div>
 
-              <label for="">Fecha fin</label>
-              <input type="text" class="form-control" id="fecha-fin" ng-model="fechaFin" >
+              <div class="input-group">
+                  <span class="input-group-addon">Fecha final</span>
+                  <input type="text" class="form-control" id="fecha-fin" ng-model="fechaFin" >
+              </div>
               <button type="button" class="miboton buscar" ng-click="fechas()">Buscar</button>
+
           </form>
       </div>
 
 
       <div ng-style="styleBuscarNombre">
           <div class="form-group buscarPorNombre">
-              <label for=""></label>
+              <h4>Selecciona un nombre:</h4>
               <select class="form-control" ng-model="nombreBusq" ng-options="o as o for o in personas"></select>
               <button type="button" class="miboton buscar" ng-click="buscarPorNombre()">Buscar</button>
           </div>
@@ -32,17 +39,27 @@
 
     </div>
     <table id="tabla-listado" class="table table-bordered table-condensed" ng-show="visualizarTabla != null;">
-        <tr >
-            <th ng-repeat="t in titulosListado">{{t}}</th>
+        <tr>
+            <th ng-repeat="t in titulosListado" >{{t}}</th>
 
         </tr>
 
-        <tr ng-repeat="l in lista" ng-class="{nopagado: l.pagado == 'no'}">
+        <span></span>
+
+        <tr ng-repeat="l in lista" ng-class="{nopagado: l.pagado == 'no'}" ng-hide="titulosListado.length < 5" >
             <td >{{l.nombre}}</td>
             <td>{{l.pagado}}</td>
             <td>{{l.importe}} €</td>
             <td>{{l.fecha}}</td>
-            <td ng-show="l.chocopuntos!=null || l.chocopuntos!='undefined'">{{l.chocopuntos}}</td>
+            <td >{{l.chocopuntos}}</td>
         </tr>
+
+        <tr ng-repeat="l in lista" ng-class="{nopagado: l.pagado == 'no'}" ng-show="titulosListado.length < 5" >
+            <td >{{l.nombre}}</td>
+            <td>{{l.pagado}}</td>
+            <td>{{l.importe}} €</td>
+            <td>{{l.fecha}}</td>
+        </tr>
+
     </table>
   <h2 ng-show="nodatos!=null">{{nodatos}}</h2>
