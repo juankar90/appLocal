@@ -1,7 +1,7 @@
 var ls = angular.module('anadirPagoService', []);
 
 
-ls.factory('anadirPagoFactory',function($http, $q, $filter){
+ls.factory('anadirPagoFactory',['$http', '$q', '$filter', function($http, $q, $filter){
 
     var peticion = {
               getPersonas: function () {
@@ -11,7 +11,7 @@ ls.factory('anadirPagoFactory',function($http, $q, $filter){
 
                     var req = {
                         method: 'GET',
-                        url: './php/pagos-ajax.php',
+                        url: './php/listado-nombres.php',
                         responseType: 'json'
                     };
 
@@ -71,4 +71,4 @@ ls.factory('anadirPagoFactory',function($http, $q, $filter){
 
 
         return peticion;
-})
+}])

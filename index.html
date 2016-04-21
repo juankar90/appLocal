@@ -16,6 +16,7 @@
   <script src="./bower_components/satellizer/satellizer.min.js"></script>
   <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="./bower_components/angular-cookies/angular-cookies.min.js"></script>
+  <script src="./bower_components/ng-dialog/js/ngDialog.min.js"></script>
 
 
 
@@ -28,12 +29,16 @@
   <script src="./js/controllers/login.js"></script>
   <script src="./js/controllers/home.js"></script>
   <script src="./js/controllers/introducir-pago.js"></script>
+  <script src="./js/controllers/poner-multa.js"></script>
+  <script src="./js/controllers/consultar-multa.js"></script>
 
   <!-- SERVICES -->
   <script src="./js/services/serv-listado.js"></script>
   <script src="./js/services/serv-anadir-pago.js"></script>
   <script src="./js/services/serv-ajax-login.js"></script>
   <script src="./js/services/serv-login.js"></script>
+  <script src="./js/services/serv-introduce-multa.js"></script>
+  <script src="./js/services/serv-consultar-multa.js"></script>
 
 
 
@@ -41,16 +46,19 @@
 <body ng-controller="miAppControl">
   <div class="principal col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 
-      <div ng-show="nombre!=null">
+      <div class="menu-sesion" ng-show="nombre!=null">
         <span ng-bind-html="nombre"></span>
           <a href="#/" ng-click="cerrarSesion()">cerrar sesion</a>
       </div>
 
-      <div ng-show="nombre!=null">
-        <h4 ng-bind-html="menu"> <span ng-bind-html="sesion"></span></h4>
+      <div class="menu-principal" ng-show="nombre!=null">
+        <ul ng-repeat="m in menu">
+          <li ng-bind-html="m"></li>
+        </ul>
+
       </div>
 
-      <div ng-view></div>
+      <div class="cierre" ng-view></div>
   </div>
 
 

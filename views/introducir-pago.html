@@ -1,5 +1,6 @@
-
+<h3>Añadir un pago</h3>
 <div ng-bind-html="msjPagoCorrecto" ng-show="msjPagoCorrecto != null"></div>
+<div ng-bind-html="msjPagoInorrecto" ng-show="msjPagoInorrecto != null"></div>
 <div class="menuPagos" ng-style="menuPagos">
     <h3>¿Qué quieres hacer ahora?</h3>
     <button type="button" class="btn btn-primary" ng-click="visualizarForm()">Añadir otro pago</button>
@@ -23,14 +24,7 @@
           <input id="pagosFecha" class="form-control" ng-model="pagosFecha">
       </div>
 
-      <div class="input-group" ng-show="pagosConcepto == 'multa'">
-          <span class="input-group-addon">Motivo</span>
-          <select class="form-control" ng-model="concepto" ng-options="o as o for o in tiposConcepto2"></select>
-      </div>
-      <div class="input-group" ng-show="concepto == 'otro'">
-          <span class="input-group-addon">Expecifica</span>
-          <textarea ng-model="masInfo" maxlength="250" rows="4" cols="40"></textarea>
-      </div>
+    
 
   </div>
 

@@ -14,10 +14,10 @@
 
     if (!$filtroNombre){
       if (!$filtrado){
-          $consulta = "SELECT persona.nombre, mensualidad.pagado, mensualidad.fecha, persona.chocopuntos, mensualidad.importe from persona, mensualidad where persona.email = mensualidad.persona";
+          $consulta = "SELECT persona.nombre, mensualidad.pagado, mensualidad.fecha, persona.chocopuntos, mensualidad.importe, persona.debe from persona, mensualidad where persona.email = mensualidad.persona";
       }
       else if ($filtrado){
-          $consulta = "SELECT persona.nombre, mensualidad.pagado, mensualidad.fecha, persona.chocopuntos, mensualidad.importe from persona, mensualidad where persona.email = mensualidad.persona AND (mensualidad.fecha BETWEEN '$inicio' AND '$final')";
+          $consulta = "SELECT persona.nombre, mensualidad.pagado, mensualidad.fecha, persona.chocopuntos, mensualidad.importe, persona.debe from persona, mensualidad where persona.email = mensualidad.persona AND (mensualidad.fecha BETWEEN '$inicio' AND '$final')";
 
       }
     }
@@ -29,7 +29,7 @@
       $email = $datos['email'];
 
 
-      $consulta = "SELECT persona.nombre, mensualidad.pagado, mensualidad.fecha, mensualidad.importe from persona, mensualidad where persona.email = '$email'";
+      $consulta = "SELECT persona.nombre, mensualidad.pagado, mensualidad.fecha, mensualidad.importe, persona.debe from persona, mensualidad where persona.email = '$email'";
     }
 
 
@@ -56,6 +56,7 @@
             $obj = new stdClass();
             $obj->nombre = $fila['nombre'];
             $obj->pagado = $fila['pagado'];
+            $obj->debe = $fila['debe'];
             $obj->fecha = $fecha;
 
             $obj->importe = $fila['importe'];

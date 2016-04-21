@@ -1,17 +1,19 @@
-var ls = angular.module('introducirMultaService', []);
+var ls = angular.module('anadirPagoService', []);
 
-
-ls.factory('introduceMultaFactory',['$http', '$q', '$filter', function($http, $q, $filter){
-    var peticion = {
-            getPersonas: function () {
+ls.factory('anadirPagoFactory',['$http', '$q', function($http, $q){
+  var peticion = {
+            recogerMultas: function (persona) {
 
                   var defered = $q.defer();
                   var promise = defered.promise;
 
                   var req = {
                       method: 'GET',
-                      url: './php/listado-nombres.php',
-                      responseType: 'json'
+                      url: './php/listado-multas-ajax.php',
+                      responseType: 'json',
+                      params: {
+                        persona: persona
+                      }
                   };
 
                   $http(req).then(function (response) {
@@ -31,21 +33,17 @@ ls.factory('introduceMultaFactory',['$http', '$q', '$filter', function($http, $q
 
             },
 
-            introduceMulta: function (persona, fecha, puntos, concepto, mas) {
+            eliminarMulta: function (id) {
 
                   var defered = $q.defer();
                   var promise = defered.promise;
 
                   var req = {
                       method: 'GET',
-                      url: './php/poner-multa-ajax.php',
+                      url: './php/listado-multas-ajax.php',
                       responseType: 'json',
                       params: {
-                        persona: persona,
-                        fecha: fecha,
-                        puntos: puntos,
-                        concepto: concepto,
-                        masInfo: mas
+                        id: id
                       }
                   };
 
@@ -66,7 +64,10 @@ ls.factory('introduceMultaFactory',['$http', '$q', '$filter', function($http, $q
 
             }
 
-        }
-        return peticion;
+      }
+
+      return peticion;
+
+
 
 }])

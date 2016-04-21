@@ -1,9 +1,9 @@
-var app = angular.module('miApp', ['ngRoute', 'routes','listadoService', 'home', 'pagos', 'anadirPagoService', 'loginService', 'login', 'loginAjaxService'])
+var app = angular.module('miApp', ['ngRoute', 'routes','listadoService', 'home', 'pagos', 'anadirPagoService', 'loginService', 'login', 'loginAjaxService', 'introducirMultaService', 'ponerMulta', 'multas'])
 
 app.controller('miAppControl', ['$scope', '$rootScope', 'authFactory', function($scope, $rootScope, authFactory){
 
 
-    $scope.menu = "<a href='#/'>HOME</a> | <a href='#/introducir-pago'>INTRODUCIR PAGO</a>"
+    $scope.menu = ["<a href='#/'>HOME</a>","<a href='#/consultar-multas'>CONSULTAR MULTAS</a>","<a href='#/introducir-pago'>INTRODUCIR PAGO</a>","<a href='#/introducir-multa'>PONER MULTA</a>"]
     $scope.sesion = "<a href='#/' ng-click='logout()'>CERRAR SESION</a>"
 
     $scope.cerrarSesion = function (){

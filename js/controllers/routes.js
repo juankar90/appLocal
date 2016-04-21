@@ -9,6 +9,15 @@ app.config( function ($routeProvider){
         controller: "pagosControl",
         templateUrl: "views/introducir-pago.html"
       })
+      .when ("/consultar-multas", {
+        controller: "multasControl",
+        templateUrl: "views/consultar-multas.html"
+      })
+      .when ("/introducir-multa", {
+        controller: "ponerMultaControl",
+        templateUrl: "views/poner-multa.html"
+      })
+
       .when ("/login", {
         controller: "loginControl",
         templateUrl: "views/login.html"

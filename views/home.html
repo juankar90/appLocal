@@ -1,3 +1,4 @@
+<h3>Listado general</h3>
   <div >
 
       <span class="subtitulo">Datos de: {{fecha}} </span> <span class="subtitulo" ng-show="fechaFinn != null || fechaFinn != 'undefined'">{{fechaFinn}}</span><br>
@@ -48,17 +49,17 @@
 
         <tr ng-repeat="l in lista" ng-class="{nopagado: l.pagado == 'no'}" ng-hide="titulosListado.length < 5" >
             <td >{{l.nombre}}</td>
-            <td>{{l.pagado}}</td>
             <td>{{l.importe}} €</td>
             <td>{{l.fecha}}</td>
             <td >{{l.chocopuntos}}</td>
+            <td>{{l.debe}} €</td>
         </tr>
 
         <tr ng-repeat="l in lista" ng-class="{nopagado: l.pagado == 'no'}" ng-show="titulosListado.length < 5" >
             <td >{{l.nombre}}</td>
-            <td>{{l.pagado}}</td>
             <td>{{l.importe}} €</td>
             <td>{{l.fecha}}</td>
+            <td>{{l.debe}} €</td>
         </tr>
 
     </table>

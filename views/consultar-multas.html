@@ -1,0 +1,43 @@
+<h3>Histórico de multas</h3>
+<div ng-style="estiloBuscarNombre">
+    <h4>¿A quién quieres buscar?</h4>
+    <div class="col-sm-9">
+        <div class="input-group der">
+            <select class="form-control" ng-model="nombreBuscarMulta" ng-options="o as o for o in personas"></select>
+        </div>
+    </div>
+
+    <div class="der col-sm-3">
+
+      <button type="button" class="btn btn-primary" ng-click="buscarDatos()">Buscar</button>
+    </div>
+</div>
+
+<div ng-style="estiloBotones" class="btnBuscarOtro">
+    <button class="miboton" ng-click="buscarOtro()">Buscar otro</button>
+</div>
+
+<div ng-style="estiloTabla">
+  <table class="table table-bordered table-condensed">
+      <tr>
+          <th ng-repeat="t in titulosListado" >{{t}}</th>
+
+      </tr>
+
+
+
+      <tr ng-repeat="l in datos" id="{{l.id}}" ng-class="{nopagado: l.pagado == 'no'}">
+          <td>{{l.nombre}}</td>
+          <td>{{l.cantidad}}</td>
+          <td>{{l.fecha}}</td>
+          <td>{{l.concepto}}</td>
+          <td>{{l.masInfo}}</td>
+          <td><span ng-click="confirmarEliminar()">Eliminar</span></td>
+        <!--  <td><span ng-click="eliminarElemento(l.id)">Eliminar</span></td>-->
+      </tr>
+
+
+
+  </table>
+  <div ng-show="nodatos !=null">{{nodatos}}</div>
+</div>

@@ -11,7 +11,7 @@ app.controller('ponerMultaControl', ['$scope', 'listadoFactory', 'introduceMulta
     .then(function(ajax){
 
         $scope.personas = ajax.data.datos;
-        console.log(ajax.data.datos)
+        //console.log(ajax.data.datos)
     })
     .catch(function (err) {
           if (err.status == 2) {
@@ -29,7 +29,7 @@ app.controller('ponerMultaControl', ['$scope', 'listadoFactory', 'introduceMulta
       introduceMultaFactory.introduceMulta($scope.multaPersona, multaFecha, $scope.multaImporte, $scope.multaConcepto, $scope.multaMasInfo)
       .then(function(ajax){
 
-          
+
           console.log(ajax.data.status)
       })
       .catch(function (err) {

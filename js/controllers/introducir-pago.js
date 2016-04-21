@@ -1,11 +1,12 @@
 var app = angular.module('pagos', ['ngSanitize']);
 
-app.controller('pagosControl', function ($scope, anadirPagoFactory, listadoFactory, $sce){
-    anadirPagoFactory.getPersonas()
+app.controller('pagosControl',['$scope', 'anadirPagoFactory', 'listadoFactory', 'introduceMultaFactory', '$sce' ,function ($scope, anadirPagoFactory, listadoFactory, introduceMultaFactory, $sce){
+
+    introduceMultaFactory.getPersonas()
     .then(function(ajax){
 
         $scope.personas = ajax.data.datos;
-        console.log(ajax.data.datos)
+        //console.log(ajax.data.datos)
     })
     .catch(function (err) {
           if (err.status == 2) {
@@ -22,13 +23,14 @@ app.controller('pagosControl', function ($scope, anadirPagoFactory, listadoFacto
     $scope.funcionAjaxPago = function(){
 
         var fechaPago = listadoFactory.formatearFecha($scope.pagosFecha)
-        console.log(fechaPago)
+        //console.log(fechaPago)
+
         anadirPagoFactory.introducirPago($scope.pagosPersona, fechaPago, $scope.pagosImporte, $scope.pagosConcepto)
+
             .then(function(ajax){
                 $scope.msjPagoCorrecto = "<div class='alert alert-success'> El pago se ha introducido correctamente</div>";
-                console.log(ajax.data.datos)
-                console.log(ajax.data.consulta)
-
+                //console.log("el concepto es : " +$scope.concepto)
+                //console.log("especificaciones: " + $scope.masInfo)
                 $scope.styleFormPagos = {
                   display: "none"
                 }
@@ -36,25 +38,18 @@ app.controller('pagosControl', function ($scope, anadirPagoFactory, listadoFacto
                   display: "inline"
                 }
 
-                /*var accion = "<h3>¿Qué quieres hacer ahora?</h3> <button type='button' class='btn btn-primary' ng-click='visualizarForm()'>Añadir otro pago</button>"
-                accion =$sce.trustAsHtml(accion);
-                $scope.elijeAccion = accion;*/
-                /*setTimeout(function() {
-                  $scope.msjPagoCorrecto=null;
-                  $scope.$apply();
-                }, 3000);*/
 
-
-
-                console.log(ajax.data.status)
+                //console.log(ajax.data.status)
             })
             .catch(function (err) {
                   if (err.status == 2) {
                     $scope.nodatos = "no hay datos que mostrar";
                   }
+                  $scope.msjPagoIncorrecto = "<div class='alert alert-success'> El pago se ha introducido correctamente</div>";
 
                   console.log('Error ' + err.status + ' ' + err.statusText);
             })
+            //console.log($scope.pagosPersona + " " + fechaPago + " " + $scope.pagosImporte + " " + $scope.pagosConcepto);
     }
 
     $scope.visualizarForm = function (){
@@ -65,12 +60,14 @@ app.controller('pagosControl', function ($scope, anadirPagoFactory, listadoFacto
         display: "none"
       }
       $scope.msjPagoCorrecto = null;
+      $scope.msjPagoIncorrecto = null;
       $scope.pagosPersona = null;
       $scope.pagosFecha = null;
       $scope.pagosImporte = null;
       $scope.pagosConcepto = null;
+      $scope.concepto = null;
+      $scope.masInfo = null;
 
-      //$scope.elijeAccion = null;
     }
 
     /*+++++++++++++++++++++
@@ -100,4 +97,4 @@ app.controller('pagosControl', function ($scope, anadirPagoFactory, listadoFacto
 
     });
 
-});
+}]);

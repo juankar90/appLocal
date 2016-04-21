@@ -7,10 +7,27 @@ app.controller('homeControl', function ($scope, listadoFactory, anadirPagoFactor
           //asigna el mes actual
           $scope.fecha = listadoFactory.comprobarMes()
 
-          $scope.titulosListado = ["Nombre", "Pagado", "Importe", "Fecha", "Puntos"]
+          $scope.titulosListado = ["Nombre", "Importe", "Fecha", "Puntos", "Debe"]
+          //console.log($scope.titulosListado.length)
 
-          //llamada a la función ajax que muestra el listado
+
+          //FUNCIÓN QUE MUESTRA EL LISTADO PRINCIPAL Y ADEMÁS LO RESETEA SI LA LLAMAN DESPUES DE HABER MODIFICADO
           $scope.listadoNormal = function () {
+
+            //comprueba si buscarNombre esta visible y lo oculta
+            if (estado){
+              $scope.styleBuscarNombre = {display: "none"}
+              estado = false;
+            }
+            //comprueba si las fechas estan visibles y lo oculta
+            if (visible){
+              $scope.styleDatePicker = {display: "none"}
+              visible = false;
+            }
+            $scope.visualizarTabla = true;
+
+            $scope.titulosListado = ["Nombre", "Importe", "Fecha", "Puntos", "Debe"]
+              //llamada a la función ajax que muestra el listado
               listadoFactory.getAll()
                   .then(function(ajax){
 
@@ -49,7 +66,7 @@ app.controller('homeControl', function ($scope, listadoFactory, anadirPagoFactor
                     .then(function(ajax){
                         $scope.fecha = $scope.fechaInicio; //reescribe el mes
                         $scope.fechaFinn = "a "+$scope.fechaFin;
-                        $scope.titulosListado = ["Nombre", "Pagado", "Importe", "Fecha", "Puntos"];
+                        $scope.titulosListado = ["Nombre", "Importe", "Fecha", "Puntos", "Debe"];
                         $scope.lista = ajax.data.datos;
                         $scope.nodatos = null; //elimina el mensaje no hay datos
 
@@ -80,6 +97,7 @@ app.controller('homeControl', function ($scope, listadoFactory, anadirPagoFactor
                     $scope.styleDatePicker = {display: "block"}
                     $scope.visualizarTabla = null;
                     visible = true;
+                    // /estado = false;
 
                 } else if (visible){
                     $scope.styleDatePicker = {display: "none"}
@@ -91,6 +109,7 @@ app.controller('homeControl', function ($scope, listadoFactory, anadirPagoFactor
                     $scope.styleBuscarNombre = {display: "none"}
                     $scope.visualizarTabla = null;
                     visible = true;
+                    estado = false;
                 }
             }
 
@@ -103,14 +122,16 @@ app.controller('homeControl', function ($scope, listadoFactory, anadirPagoFactor
               $scope.styleBuscarNombre = {
                   display: "none"
               }
-              var estado = false;
 
-              //SI PULSAMOS UNA VEZ SE MUESTRA EL FORM, SI VOLVEMOS A PULSAR SE ACTIVA
+
+            //MUESTRA Y OCULTA EL FORM DE BUSQUEDA POR NOMBRE
+            var estado = false;
               $scope.mostrarBuscarNombre = function (){
                   if (!estado){
                       $scope.styleBuscarNombre = {display: "block"}
                       estado = true;
                       $scope.visualizarTabla = null;
+                      //visible = false;
 
                   } else if (estado){
                       $scope.styleBuscarNombre = {display: "none"}
@@ -121,6 +142,7 @@ app.controller('homeControl', function ($scope, listadoFactory, anadirPagoFactor
                       $scope.styleBuscarNombre = {display: "block"}
                       $scope.styleDatePicker = {display: "none"}
                       estado = true;
+                      visible = false;
                       $scope.visualizarTabla = null;
                   }
 
@@ -146,7 +168,7 @@ app.controller('homeControl', function ($scope, listadoFactory, anadirPagoFactor
                   .then(function(ajax){
                       $scope.lista = ajax.data.datos;
 
-                      $scope.titulosListado = ["Nombre", "Pagado", "Importe", "Fecha"];
+                      $scope.titulosListado = ["Nombre", "Importe", "Fecha", "Debe"];
 
                       $scope.nodatos = null; //elimina el mensaje no hay datos
 

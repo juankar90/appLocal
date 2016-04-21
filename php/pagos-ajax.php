@@ -8,63 +8,70 @@
     isset($_GET['importe']) ? $importe = $_GET['importe'] : $insertar = false;
     isset($_GET['concepto']) ? $concepto = $_GET['concepto'] : $insertar = false;
 
+
     $array = array();
-    $status = 1;
-    $mensaje = "Ha ocurrido un error no controlado";
+    $status = 1; // status por defecto
+    $mensaje = "Ha ocurrido un error no controlado"; // error por defecto, si no entrara nada
 
-    //$persona = "Jose";
+    $objfinal = new stdClass(); //creamos el objeto
 
-    if ($insertar){
-        $status = 0;
-        $mensaje = "Se ha insertado correctamente a la bd";
+    //  if ($insertar){
+          /*if ($persona == 'undefined' || $fecha == 'undefined' || $importe = 'undefined' || $concepto = 'undefined' || $persona == null || $fecha == null || $importe = null || $concepto = null){
+              $insertar = false;
 
-        $consulta = "SELECT email FROM persona WHERE nombre = '$persona'";
-        $resultado = $conexion->query($consulta);
-        $datos = $resultado->fetch_array();
-        $email = $datos['email'];
+          }*/
+        if ($insertar){ //doble comprobación, por si llega algun dato undefined
 
-        if ($concepto == 'multa'){
-            $consulta1 = "INSERT INTO `pago-multas` (`persona`, `importe`, `fecha`) VALUES ('$email', '$importe', '$fecha');";
-        }else if ($concepto == 'pago mensual' ){
-            $consulta1 = "INSERT INTO `mensualidad` (`persona`, `importe`, `fecha`, `pagado`) VALUES ('$email', '$importe', '$fecha', 'si');";
+            $status = 0;
+            $mensaje = "Se ha insertado correctamente a la bd";
+
+            //BUSCAMOS EL EMAIL DE LA PERSONA
+            $consulta = "SELECT email FROM persona WHERE nombre = '$persona'";
+            $resultado = $conexion->query($consulta);
+            $datos = $resultado->fetch_array();
+            $email = $datos['email'];
+
+            if ($concepto == 'multa'){
+
+                $consulta1 = "INSERT INTO `pago-multas` (`persona`, `importe`, `fecha`) VALUES ('$email', '$importe', '$fecha')";
+
+            }else if ($concepto == 'pago mensual' ){
+
+                $consulta1 = "INSERT INTO `mensualidad` (`persona`, `importe`, `fecha`, `pagado`) VALUES ('$email', '$importe', '$fecha', 'si')";
+
+            }
+
+            $result = $conexion->query($consulta1); // EJECUTA INSERTAR EL PAGO EN LA BD
+
+            //SI ES MULTA AJUSTAMOS LOS CHOCOPUNTOS EN LA TABLA PERSONA
+            if ($concepto == 'multa') {
+                if ($result) {
+                  //Miramos cuantos puntos tiene y cuanto dinero debe
+                  $consultaSelect = "SELECT chocopuntos, debe from persona where email = '$email'";
+                  $resultSelect  = $conexion->query($consultaSelect);
+                  $mifila = $resultSelect->fetch_assoc();
+
+                  $puntos = $importe/2; //puntos que vamos a saldar
+                  $debe = $mifila['debe']; //dinero que debe
+                  $debe = $debe - $importe; //importe actualizado restandole lo que paga
+                  $puntos = ($mifila['chocopuntos']-$puntos); //estos son los puntos que tiene actualmente, tras pagar
+                  $ConsultaAnadePuntos = "UPDATE `persona` SET `chocopuntos` = '$puntos',  `debe` = '$debe' where email = '$email'";
+                  $conexion->query($ConsultaAnadePuntos);
+                }
+            }
+            if (!$result) {
+                $mensaje = "Ha habido un error";
+                $status = 1;
+            }
+
+            $objfinal->datos = "correcto";
         }
 
-        $result = $conexion->query($consulta1);
-
-        $objfinal = new stdClass();
-        $objfinal->status = $status;
-        $objfinal->statusText = $mensaje;
-        $objfinal->datos = $result;
-        $objfinal->consulta = $consulta1;
-
-    }
-
-    if (!$insertar) {
-      $consulta = "SELECT nombre FROM persona";
-
-      $result = $conexion->query($consulta);
-
-      $totalFilas = mysqli_num_rows($result);
-      if ($totalFilas <1) {
-            $status = 2; //status 2 es que está vacía la consulta
-            $mensaje = "la consulta a la bd no ha devuelto nada";
-      }
-      else {
-          $mensaje = "la peticion ajax se ha realizado correctamente";
-          $status = 0;
-          while ($fila = $result->fetch_array()){
-              array_push($array, $fila[0]);
-          }
-      }
-
-      $objfinal = new stdClass();
-      $objfinal->status = $status;
-      $objfinal->statusText = $mensaje;
-      $objfinal->datos = $array;
-    }
+  //  }
 
 
-
+    $objfinal->status = $status;
+    $objfinal->statusText = $mensaje;
 
 
     echo json_encode($objfinal);

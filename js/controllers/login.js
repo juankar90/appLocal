@@ -19,10 +19,13 @@ app.controller('loginControl', ['$scope', '$rootScope', 'authFactory', 'loginAja
     .then(function(ajax){
       console.log(ajax.data.estado)
         if (ajax.data.estado)
-            $rootScope.nombre = ajax.data.datos[0].nombre;
+            $rootScope.nombre = "Hola " +ajax.data.datos[0].nombre;
             console.log("soy un usuario " + ajax.data.datos[0].tipo)
             $scope.resultadoLogin = authFactory.login(ajax.data.estado, ajax.data.datos[0].email, ajax.data.datos[0].password, ajax.data.datos[0].tipo);
-
+        $('.principal').css({
+          "border": "10px double",
+          "backgroundColor": "rgb(238, 238, 238)"
+        })
 
     })
     .catch(function (err) {

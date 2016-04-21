@@ -34,14 +34,19 @@ ls.factory("authFactory", ['$rootScope', '$location', 'loginAjaxFactory', functi
             $rootScope.tipoUser = null;
             $rootScope.nombre = null;
             console.log ("hacemos logout")
+
+            $('.principal').css({
+              "border": "none",
+              "backgroundColor": "rgb(201, 201, 201)"
+            })
             //mandamos al login
             $location.path("/login");
         },
         checkStatus : function()
         {
             //creamos un array con las rutas que queremos controlar
-            var rutasPrivadas = ["/"];
-            var rutasAdmin = ["/introducir-pago"];
+            var rutasPrivadas = ["/", "/consultar-multas"];
+            var rutasAdmin = ["/introducir-multa","/introducir-pago"];
 
             if(this.in_array($location.path(),rutasPrivadas) && ($rootScope.username == "undefined" || $rootScope.username == null))
             {
