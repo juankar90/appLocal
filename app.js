@@ -1,4 +1,4 @@
-var app = angular.module('miApp', ['ngRoute', 'routes','listadoService', 'home', 'pagos', 'anadirPagoService', 'loginService', 'login', 'loginAjaxService', 'introducirMultaService', 'ponerMulta', 'multas'])
+var app = angular.module('miApp', ['ngRoute', 'routes','listadoService', 'home', 'pagos', 'anadirPagoService', 'loginService', 'login', 'loginAjaxService', 'introducirMultaService', 'ponerMulta', 'multas', 'popUpEliminar'])
 
 app.controller('miAppControl', ['$scope', '$rootScope', 'authFactory', function($scope, $rootScope, authFactory){
 

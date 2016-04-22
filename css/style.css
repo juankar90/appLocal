@@ -6,6 +6,7 @@ body {
     border-radius: 15px;
     padding: 40px 15px;
     background-color: rgb(201, 201, 201);
+    min-height: 500px;
 }
 
 th {
@@ -125,18 +126,17 @@ HISTORICO MULTAS
 }
 
 
+.der select{
+  width: 100%;
+}
+
 /***********
 COMUN FORMULARIOS
 *********/
 .miboton {
   padding: 5px;
 }
-textarea, select{
-  width: 100%;
-}
-.input-group select {
-  width: 100%;
-}
+
 
 
 /*****************
@@ -161,14 +161,32 @@ OTROS ELEMENTOS COMUNES
   clear: both;
 }
 
+.aa{
+  display: inline-block !important;
+}
 
 .confirmarEliminar {
   background-color: white;
   min-width: 300px;
   min-height: 250px;
   position: absolute;
-  top: 30%;
-  left: 35%;
+  top: 10em;
   padding: 20px;
   border: 2px solid black;
+}
+
+@media (max-width: 767px) {
+    .confirmarEliminar {
+      left: 30%;
+    }
+    .principal {
+      margin-top: 5px;
+    }
+
+}
+@media (max-width: 500px) {
+  .confirmarEliminar {
+    left: 15%;
+  }
+
 }

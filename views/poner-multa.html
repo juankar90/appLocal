@@ -1,14 +1,16 @@
 <h3>Poner una multa</h3>
-<div ng-bind-html="msjPagoCorrecto" ng-show="msjPagoCorrecto != null"></div>
+
+
+<div class="alert alert-success" ng-bind-html="msjCorrecto" ng-show="msjCorrecto != null"></div>
     <div class="menuPagos" ng-style="menuPagos">
         <h3>¿Qué quieres hacer ahora?</h3>
-        <button type="button" class="btn btn-primary">Añadir otra multa</button>
-        <a href="/#"><button type="button" class="btn btn-primary">Visualizar pagos</button></a>
+        <button type="button" class="btn btn-primary" ng-click="anadirOtraMulta()">Añadir otra multa</button>
+        <a href="./#/"><button type="button" class="btn btn-primary">Visualizar pagos</button></a>
     </div>
 
 </div>
 
-<form action="" ng-style="styleFormPagos">
+<form action="" name="ponerMultaForm" ng-style="styleFormMultas">
 
   <div class="form-pagos col-xs-12 col-sm-6">
 
@@ -31,7 +33,6 @@
 
   <div class="form-pagos col-xs-12 col-sm-6">
 
-
       <div class="input-group col-sm-12">
           <span class="input-group-addon">Motivo</span>
             <select class="form-control" ng-model="multaConcepto" ng-options="o as o for o in posiblesConceptos"></select>
@@ -39,17 +40,10 @@
 
       <div class="input-group col-sm-12">
           <span class="input-group-addon">Expecifica</span>
-          <textarea class="form-control" ng-model="multaMasInfo" maxlength="250" rows="3" ></textarea>
+          <textarea class="form-control" ng-model="multaMasInfo" maxlength="250" rows="3" placeholder="Campo no obligatorio"></textarea>
       </div>
 
-
-
-
-
-
-
-
-      <button type="button" class="btn btn-primary" ng-click="introducirMulta()">Guardar</button>
+      <button type="button" class="btn btn-primary" ng-disabled="!ponerMultaForm.$valid"  ng-click="introducirMulta()">Guardar</button>
 
   </div>
 

@@ -1,15 +1,12 @@
 var app = angular.module('ponerMulta', []);
 app.controller('ponerMultaControl', ['$scope', 'listadoFactory', 'introduceMultaFactory', function ($scope, listadoFactory, introduceMultaFactory){
-    //$scope.personas = servFactory
-    $scope.posiblesConceptos = ['limpieza']
+    $scope.msjCorrecto = null;
+    $scope.posiblesConceptos = ['Limpieza', 'Otro'];
 
-    $scope.menuPagos = {
-      display: "none"
-    }
+    $scope.menuPagos = { "display": "none" };
 
     introduceMultaFactory.getPersonas()
     .then(function(ajax){
-
         $scope.personas = ajax.data.datos;
         //console.log(ajax.data.datos)
     })
@@ -28,7 +25,9 @@ app.controller('ponerMultaControl', ['$scope', 'listadoFactory', 'introduceMulta
       }
       introduceMultaFactory.introduceMulta($scope.multaPersona, multaFecha, $scope.multaImporte, $scope.multaConcepto, $scope.multaMasInfo)
       .then(function(ajax){
-
+          $scope.msjCorrecto = "Se ha introducido correctamente";
+          $scope.menuPagos = { "display": "inline" };
+          $scope.styleFormMultas = { "display" : "none"};
 
           console.log(ajax.data.status)
       })
@@ -39,6 +38,19 @@ app.controller('ponerMultaControl', ['$scope', 'listadoFactory', 'introduceMulta
 
             console.log('Error ' + err.status + ' ' + err.statusText);
       })
+    }
+
+
+    $scope.anadirOtraMulta = function () {
+      $scope.styleFormMultas = { "display" : "inline"};
+      $scope.msjCorrecto = null;
+      $scope.menuPagos = { "display": "none" };
+      $scope.multaPersona = null;
+      $scope.multaFecha = null;
+      $scope.multaImporte = null;
+      $scope.multaConcepto = null;
+      $scope.multaMasInfo = null;
+
     }
 
 

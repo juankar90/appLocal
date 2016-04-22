@@ -1,13 +1,15 @@
 <h3>Histórico de multas</h3>
 <div ng-style="estiloBuscarNombre">
     <h4>¿A quién quieres buscar?</h4>
-    <div class="col-sm-9">
-        <div class="input-group der">
+    <div class="col-xs-9">
+        <div class="input-group der col-xs-12">
+
             <select class="form-control" ng-model="nombreBuscarMulta" ng-options="o as o for o in personas"></select>
         </div>
+
     </div>
 
-    <div class="der col-sm-3">
+    <div class="der col-xs-3">
 
       <button type="button" class="btn btn-primary" ng-click="buscarDatos()">Buscar</button>
     </div>
@@ -16,6 +18,14 @@
 <div ng-style="estiloBotones" class="btnBuscarOtro">
     <button class="miboton" ng-click="buscarOtro()">Buscar otro</button>
 </div>
+
+<div ng-bind-html="msjBorradoCorrecto" ng-show="msjBorradoCorrecto!= null" class="alert alert-success"></div>
+
+<div ng-style="estiloBotonVolverAtras" class="btnBuscarOtro" ng-click="volverAtras()">
+    <button class="miboton" ng-click="buscarOtro()">Volver atrás</button>
+</div>
+
+
 
 <div ng-style="estiloTabla">
   <table class="table table-bordered table-condensed">
@@ -32,12 +42,13 @@
           <td>{{l.fecha}}</td>
           <td>{{l.concepto}}</td>
           <td>{{l.masInfo}}</td>
-          <td><span ng-click="confirmarEliminar()">Eliminar</span></td>
+          <td><span ng-click="confirmarEliminar(l.id)">Eliminar</span></td>
         <!--  <td><span ng-click="eliminarElemento(l.id)">Eliminar</span></td>-->
       </tr>
 
 
 
   </table>
-  <div ng-show="nodatos !=null">{{nodatos}}</div>
+
 </div>
+<div ng-show="nodatos !=null">{{nodatos}}</div>

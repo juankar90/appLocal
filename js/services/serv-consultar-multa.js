@@ -33,7 +33,7 @@ ls.factory('anadirPagoFactory',['$http', '$q', function($http, $q){
 
             },
 
-            eliminarMulta: function (id) {
+            eliminarMulta: function (id, motivo) {
 
                   var defered = $q.defer();
                   var promise = defered.promise;
@@ -43,7 +43,8 @@ ls.factory('anadirPagoFactory',['$http', '$q', function($http, $q){
                       url: './php/listado-multas-ajax.php',
                       responseType: 'json',
                       params: {
-                        id: id
+                        id: id,
+                        motivo: motivo
                       }
                   };
 

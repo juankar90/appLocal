@@ -64,6 +64,7 @@
     }
     else {
       $id = $_GET['id'];
+      isset($_GET['motivo']) ? $motivo = $_GET['motivo'] : $motivo = "no especificado";
       //lectura de los datos que vamos a borrar
       $select = "SELECT * FROM multas WHERE id='$id'";
       $result = $conexion->query($select);
@@ -75,7 +76,7 @@
 
       //ahora lo insertamos en la tabla multas-delete, con la fecha del borrado
       $hoy = date("Y-m-d H:i:s");
-      $insertar = "INSERT INTO `multas-delete` (`persona`, `cantidad`, `concepto`, `fecha`, `fecha_borrado`) VALUES ('$email', '$puntos', '$concepto', '$fecha', '$hoy')";
+      $insertar = "INSERT INTO `multas-delete` (`persona`, `cantidad`, `concepto`, `fecha`, `fecha_borrado`, `motivo_borrado`) VALUES ('$email', '$puntos', '$concepto', '$fecha', '$hoy', '$motivo')";
 
       $conexion->query($insertar);
 
@@ -101,7 +102,7 @@
       $objfinal = new stdClass();//creamos el objeto
       $objfinal->status = 0;
       $objfinal->statusText = "se ha borrado correctamente";
-      
+
 
 
 

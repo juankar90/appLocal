@@ -1,4 +1,10 @@
-<div class="confirmarEliminar">
-¿Seguro que quieres eliminar? <br>
-<button>Eliminar</button> <button>Cancelar</button>
+<div class="confirmarEliminar" >
+
+    <label for="">Escribe el motivo</label><br>
+    <textarea name="motivo" id="" cols="30" rows="2" ng-model="motivo"></textarea> <br><br><br>
+    ¿Seguro que quieres eliminar? <br>
+
+    <button ng-click="eliminarConfirmado()">Eliminar</button>
+    <button ng-click="cancelar()">Cancelar</button>
+
 </div>

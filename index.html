@@ -16,7 +16,11 @@
   <script src="./bower_components/satellizer/satellizer.min.js"></script>
   <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="./bower_components/angular-cookies/angular-cookies.min.js"></script>
-  <script src="./bower_components/ng-dialog/js/ngDialog.min.js"></script>
+  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js"></script>
+
+  <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
 
 
 
@@ -31,6 +35,7 @@
   <script src="./js/controllers/introducir-pago.js"></script>
   <script src="./js/controllers/poner-multa.js"></script>
   <script src="./js/controllers/consultar-multa.js"></script>
+  <script src="./js/controllers/confirmar-eliminar.js"></script>
 
   <!-- SERVICES -->
   <script src="./js/services/serv-listado.js"></script>
@@ -52,7 +57,7 @@
       </div>
 
       <div class="menu-principal" ng-show="nombre!=null">
-        <ul ng-repeat="m in menu">
+        <ul ng-repeat="m in menu" class="aa">
           <li ng-bind-html="m"></li>
         </ul>
 

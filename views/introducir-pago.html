@@ -10,21 +10,21 @@
 
 </div>
 
-<form action="" ng-style="styleFormPagos">
+<form action="" name="formIntroducirPago" ng-style="styleFormPagos">
 
   <div class="form-pagos col-xs-12 col-sm-6">
 
       <div class="input-group izq col-sm-12">
           <span class="input-group-addon">Persona</span>
-          <select class="form-control" ng-model="pagosPersona" ng-options="o as o for o in personas"></select>
+          <select class="form-control" ng-model="pagosPersona" ng-options="o as o for o in personas" required></select>
       </div>
 
       <div class="input-group der col-sm-12">
           <span class="input-group-addon">Fecha</span>
-          <input id="pagosFecha" class="form-control" ng-model="pagosFecha">
+          <input id="pagosFecha" class="form-control" ng-model="pagosFecha" required>
       </div>
 
-    
+
 
   </div>
 
@@ -32,20 +32,20 @@
 
       <div class="input-group der col-sm-12">
           <span class="input-group-addon">Importe</span>
-          <input id="pagosFecha" class="form-control" type="number" ng-model="pagosImporte">
+          <input id="pagosFecha" class="form-control" type="number" ng-model="pagosImporte" required>
       </div>
 
 
       <div class="input-group der col-sm-12">
           <span class="input-group-addon">Concepto</span>
-          <select class="form-control" ng-model="pagosConcepto" ng-options="o as o for o in tiposConcepto">Concepto</select>
+          <select class="form-control" ng-model="pagosConcepto" ng-options="o as o for o in tiposConcepto" required>Concepto</select>
       </div>
 
 
 
 
 
-      <button type="button" class="btn btn-primary" ng-click="funcionAjaxPago()">Guardar</button>
+      <button type="submit" class="btn btn-primary" ng-disabled="!formIntroducirPago.$valid" ng-click="funcionAjaxPago()">Guardar</button>
 
   </div>
 
